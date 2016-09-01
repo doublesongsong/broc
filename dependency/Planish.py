@@ -71,7 +71,6 @@ from dependency import BrocTree
 from dependency import BrocModule_pb2
 from util import Function
 
- 
 class Planish(object):
     """
     class for planishing dependent modules

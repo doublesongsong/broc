@@ -61,6 +61,8 @@ def Help(bin_name, subcommand=None):
             "\t--jobs=num\t\t: Set the number of build threads",
             False)
         Log.colorprint("DEFAULT", "\t --all-log\t\t: Show all build log infomation", False)
+        Log.colorprint("DEFAULT", "\t --auto-includet\t: Add include directory of dependent modules", False)
+        Log.colorprint("DEFAULT", "\t --auto-lib\t\t: Add static library files of dependent modules", False)
         return 0
 
     if subcommand == "show-deps":
@@ -104,12 +106,16 @@ def OptionBuild(argv):
         options["mode"] : debug or release
         options["path"] : modular path
         options["jobs"] : the number of build threads
+        options["auto_include"] : add directory include of dependent modules automatically
+        options["auto_lib"] : add .a files of dependent modules automatically
     """
     options = dict()
     options["all_log"] = False
     options["path"] = ""
     options["mode"] = "debug"
     options["jobs"] = 4
+    options["auto_include"] = False
+    options["auto_lib"] = False
 
     try:
         opts, args = getopt.gnu_getopt(argv, "", ["all-log", "mode=", "jobs="])
@@ -139,6 +145,12 @@ def OptionBuild(argv):
             continue
         if opt == "--jobs":
             options["jobs"] = int(arg)
+            continue
+        if opt == "--auto-inlcude":
+            options["auto_include"] = True
+            continue
+        if opt == "--auto-lib":
+            options["auto_lib"] = True
             continue
         return None
 

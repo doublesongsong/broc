@@ -101,6 +101,12 @@ class Environment(object):
         """
         return self._build_mode
 
+    def IsMain(self):
+        """
+        whether is env object of main module
+        """
+        return self._module.is_main
+
     def AddSubDir(self, v):
         """
         Add subdirectory v

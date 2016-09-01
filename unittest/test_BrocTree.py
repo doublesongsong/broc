@@ -48,7 +48,7 @@ class TestBrocTree(unittest.TestCase):
                                                          postfix[2],
                                                          logger)
         tree = BrocTree.BrocTree()
-        tree.SetRoot(root)
+        tree.SetRoot(BrocTree.BrocNode(root, None, True))
         tree1 = BrocTree.BrocTree()
         tree2 = BrocTree.BrocTree()
         self.assertEqual(tree.Id(), tree1.Id())
